@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springapp.mvc.dao.UserDao" >
+  <resultMap id="BaseResultMap" type="com.springapp.mvc.model.User" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_PASSWORD" property="userPassword" jdbcType="VARCHAR" />
+    <result column="USER_STATION" property="userStation" jdbcType="VARCHAR" />
+    <result column="USER_DEPT" property="userDept" jdbcType="VARCHAR" />
+    <result column="USER_DESC" property="userDesc" jdbcType="VARCHAR" />
+    <result column="USER_ROLE" property="userRole" jdbcType="CHAR" />
+    <result column="USER_CTDATE" property="userCtdate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, USER_NAME, USER_PASSWORD, USER_STATION, USER_DEPT, USER_DESC, USER_ROLE, 
+    USER_CTDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from principle_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from principle_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.springapp.mvc.model.User" >
+    insert into principle_user (USER_ID, USER_NAME, USER_PASSWORD, 
+      USER_STATION, USER_DEPT, USER_DESC, 
+      USER_ROLE, USER_CTDATE)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userStation,jdbcType=VARCHAR}, #{userDept,jdbcType=VARCHAR}, #{userDesc,jdbcType=VARCHAR}, 
+      #{userRole,jdbcType=CHAR}, #{userCtdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springapp.mvc.model.User" >
+    insert into principle_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="userPassword != null" >
+        USER_PASSWORD,
+      </if>
+      <if test="userStation != null" >
+        USER_STATION,
+      </if>
+      <if test="userDept != null" >
+        USER_DEPT,
+      </if>
+      <if test="userDesc != null" >
+        USER_DESC,
+      </if>
+      <if test="userRole != null" >
+        USER_ROLE,
+      </if>
+      <if test="userCtdate != null" >
+        USER_CTDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userStation != null" >
+        #{userStation,jdbcType=VARCHAR},
+      </if>
+      <if test="userDept != null" >
+        #{userDept,jdbcType=VARCHAR},
+      </if>
+      <if test="userDesc != null" >
+        #{userDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null" >
+        #{userRole,jdbcType=CHAR},
+      </if>
+      <if test="userCtdate != null" >
+        #{userCtdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springapp.mvc.model.User" >
+    update principle_user
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userStation != null" >
+        USER_STATION = #{userStation,jdbcType=VARCHAR},
+      </if>
+      <if test="userDept != null" >
+        USER_DEPT = #{userDept,jdbcType=VARCHAR},
+      </if>
+      <if test="userDesc != null" >
+        USER_DESC = #{userDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null" >
+        USER_ROLE = #{userRole,jdbcType=CHAR},
+      </if>
+      <if test="userCtdate != null" >
+        USER_CTDATE = #{userCtdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springapp.mvc.model.User" >
+    update principle_user
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      USER_STATION = #{userStation,jdbcType=VARCHAR},
+      USER_DEPT = #{userDept,jdbcType=VARCHAR},
+      USER_DESC = #{userDesc,jdbcType=VARCHAR},
+      USER_ROLE = #{userRole,jdbcType=CHAR},
+      USER_CTDATE = #{userCtdate,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>
